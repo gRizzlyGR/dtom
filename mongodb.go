@@ -11,8 +11,8 @@ type Mongo struct {
 	Client *mongo.Client
 }
 
-type MongoLoader interface {
-	Load(docs []interface{})
+type JSONLoader interface {
+	BulkLoad(database string, collection string, docs []interface{})
 }
 
 func openConnection(uri string) *mongo.Client {
@@ -24,7 +24,7 @@ func openConnection(uri string) *mongo.Client {
 	return client
 }
 
-func (m *Mongo) InsertMany(database string, collection string, docs []interface{}) {
+func (m *Mongo) BulkLoad(database string, collection string, docs []interface{}) {
 	coll := m.Client.Database(database).Collection(collection)
 
 	_, err := coll.InsertMany(context.TODO(), docs)
