@@ -1,13 +1,13 @@
 dtom
 ====
 
-`dtom` is a tool for importing DynamoDB JSONs into MongoDB
+`dtom` is a tool for importing DynamoDB JSONs into MongoDB.
 
 Background
 ----------
-DynamoDB is great for managing data without worrying about instances, servers, etc. To analyze the data more deeply, sometimes you could not always rely on the DynamoDB's query or scan fucntions, and you may need other tools like Athena.
+DynamoDB is great for managing data without worrying about instances, servers, etc. To analyze the data more deeply, sometimes you could not always rely on the DynamoDB's query or scan functions, and you may need other tools like Athena.
 
-To analyze the date locally one can easily export a table dump gzipped into S3, and download it. 
+To analyze the data locally, one can easily export a table dump gzipped into S3, and download it. 
 
 Since DynamoDB can export all data into JSONs, we can in turn import them into MongoDB and use its powerful query engine.
 
@@ -76,9 +76,9 @@ Usually, every item is stored as a single unformatted JSON on a line in a [JSON 
 
 Instructions
 ------------
-Make sure to have a running MongoDB instance.
+- Make sure to have a running MongoDB instance.
 
-Once compiled, use `./dtom --help` to check the help:
+- Once compiled, use `./dtom --help` to check the help:
 ```
 Usage of ./dtom:
   -blockSize int
@@ -93,7 +93,7 @@ Usage of ./dtom:
         MongoDB URI
 ```
 
-The program reads input from the standard input, so you can use it in a pipeline:
+- The program reads input from the standard input, so you can use it in a pipeline:
 
 ```bash
 zcat *.gz | ./dtom -db testDB -collection testColl -key testId --mongoURI 'mongodb://localhost' --blockSize 100
