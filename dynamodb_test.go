@@ -6,77 +6,7 @@ import (
 )
 
 func TestToMap(t *testing.T) {
-	test := `
-	{
-		"Item": {
-			"key1": {
-				"S": "val1"
-			},
-			"key2": {
-				"N": "42"
-			},
-			"key3": {
-				"BOOL": false
-			},
-			"key4": {
-				"M": {
-					"key4.1": {
-						"S": "val4.1"
-					},
-					"key4.2": {
-						"M": {
-							"key4.2.1": {
-								"S": "val4.2.1"
-							}
-						}
-					}
-				}
-			},
-			"key5": {
-				"L": [
-					{
-						"M": {
-							"key5.0": {
-								"S": "val5.0"
-							},
-							"key5.1": {
-								"N": "42"
-							}
-						}
-					}
-				]
-			},
-			"key6": {
-				"M": {
-					"key6.1": {
-						"L": [
-							{
-								"L": [
-									{
-										"M": {
-											"key6.1.1": {
-												"S": "val6.1.1"
-											}
-										}
-									}
-								]
-							}
-						]
-					}
-				}
-			},
-			"key7": {
-				"L": []
-			},
-			"key8": {
-				"S": "val8€"
-			},
-			"key9": {
-				"NULL": true
-			}
-		}
-	}	
-	`
+	test := `{"Item":{"key1":{"S":"val1"},"key2":{"N":"42"},"key3":{"BOOL":false},"key4":{"M":{"key4.1":{"S":"val4.1"},"key4.2":{"M":{"key4.2.1":{"S":"val4.2.1"}}}}},"key5":{"L":[{"M":{"key5.0":{"S":"val5.0"},"key5.1":{"N":"42"}}}]},"key6":{"M":{"key6.1":{"L":[{"L":[{"M":{"key6.1.1":{"S":"val6.1.1"}}}]}]}}},"key7":{"L":[]},"key8":{"S":"val8€"}}}`
 
 	m := Unmarshal([]byte(test))
 	got := m.ToMap()
@@ -108,7 +38,6 @@ func TestToMap(t *testing.T) {
 		},
 		"key7": JSONList{},
 		"key8": "val8€",
-		"key9": nil,
 	}
 
 	if !reflect.DeepEqual(want, got) {
