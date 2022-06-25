@@ -7,7 +7,7 @@ builds:
       - darwin
     goarch:
       - 386
-      - arm64
+      - amd64
 
 archives:
   - name_template: "{{.Binary}}_{{.Tag}}_{{.Os}}_{{.Arch}}"
@@ -16,7 +16,7 @@ archives:
         format: zip
 
 nfpms:
-  - maintainer: Giuseppe Rizzi <giusrizzi@gmail.com>
+  - maintainer: Giuseppe Rizzi <giusrizzi_AT_gmail.com>
     description: DynamoDB JSONs into MongoDB importer.
     homepage: https://github.com/gRizzlyGR/dtom
     license: MIT
