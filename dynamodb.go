@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -29,6 +30,12 @@ func (m *DynamoDBJSONMap) ToValue() JSONValue {
 		case "L":
 			jsonList := DynamoDBJSONList(val.([]interface{}))
 			return jsonList.ToList()
+		case "NULL":
+			if val == true {
+				return nil
+			}
+
+			panic(fmt.Sprintf("NULL value is %v instead of true", val))
 		default: // We've found a field name
 			field := val.(DynamoDBJSONMap)
 			return field.ToValue()
